@@ -1,6 +1,5 @@
 let popToggle = true;
-
-
+let musicPause = false;
 const canvas = document.querySelector("canvas");
 const drawingSurface = canvas.getContext("2d");
 const button = document.querySelector("#create-cats");
@@ -8,18 +7,17 @@ const sprites = []
 const pop = document.getElementById("pop");
 const music = document.getElementById("music");
 const counter = document.getElementById("counter");
-const togglePopSound = document.getElementById("toggle-pop-sound");
-togglePopSound.onClick = popSoundToggle;
+const togglePopSound = document.querySelector("#toggle-pop-sound");
+const toggleMusic = document.querySelector("#toggle-music");
+
 
 
 function popSoundToggle(){
     if(popToggle === true){
         popToggle = false;
-        console.log("Pop sound is off")
         return popToggle
     } else {
         popToggle = true;
-        console.log("Pop sound is on")
         return true
         return popToggle;
     }
@@ -55,11 +53,11 @@ function addSprite(){
     newSprite.xSpeed = 3;
     newSprite.ySpeed = 3;
     sprites.push(newSprite);
-    console.log("Add cats is running...")
-    console.log("There are " + sprites.length + "cats on screen.")
-    music.play();
+    if(musicPause === false){
+        music.play();
+    }
+
     counter.innerHTML = sprites.length + " cats";
-    console.log("sprites length " + sprites.length);
 }
 
 
@@ -78,9 +76,10 @@ function update(){
     }
     
 function popSound(){
-    let sound = new Audio("pop.mp3");
-    sound.play();
-    console.log("Pop sound played")
+    if(popToggle === true){
+        let sound = new Audio("pop.mp3");
+        sound.play();
+    }
 }
 
     //collision detection
@@ -90,12 +89,18 @@ function popSound(){
         if (cat.x + cat.width > canvas.width || cat.x < 0) {
             cat.xSpeed = -cat.xSpeed; // Reverse direction
             popSound();
-            console.log("collision detection is running...")
         }
         if (cat.y + cat.height > canvas.height || cat.y < 0) {
             cat.ySpeed = -cat.ySpeed; // Reverse direction
             popSound();
-            console.log("collision detection is running...")
+        }
+        if(cat.x - cat.width > canvas.width){
+            cat.x = canvas.width - cat.width;
+            console.log("Cat went out of bounds, repositioning...")
+        }
+        if(cat.y - cat.height > canvas.height){
+            cat.y = canvas.height - cat.height;
+            console.log("Cat went out of bounds, repositioning...")
         }
     }
 
@@ -110,7 +115,18 @@ function render(){
     }
 }
 
+toggleMusic.addEventListener("click", function(){
+    console.log("music toggle is" + musicPause)
+    if(musicPause === true){
+        music.play();
+        musicPause = false
+    } else {
+        music.pause();
+        musicPause = true
+    }
+})
+
+togglePopSound.addEventListener("click", popSoundToggle);
 button.onclick = addSprite;
 
-console.log("Script loaded");
 loadHandler();
