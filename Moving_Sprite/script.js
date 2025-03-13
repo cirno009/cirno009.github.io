@@ -7,19 +7,18 @@ const sprites = []
 const pop = document.getElementById("pop");
 const music = document.getElementById("music");
 const counter = document.getElementById("counter");
-const togglePopSound = document.querySelector("#toggle-pop-sound");
+// const togglePopSound = document.querySelector("#toggle-pop-sound");
 const toggleMusic = document.querySelector("#toggle-music");
-
-
 
 function popSoundToggle(){
     if(popToggle === true){
         popToggle = false;
+        togglePopSound.innerText = "Sound: OFF";
         return popToggle
     } else {
         popToggle = true;
-        return true
-        return popToggle;
+        togglePopSound.innerText = "Sound: ON";
+        return popToggle
     }
 }
 
@@ -50,8 +49,8 @@ function addSprite(){
     const newSprite = Object.create(sprite);
     newSprite.x = Math.random() * ((canvas.width - 90) - 90) + 90; //random number between canvas width-90 and 90 to account for size of the cat
     newSprite.y = Math.random() * ((canvas.height - 90) - 90) + 90; //random number between canvas height-90 and 90 to account for size of the cat
-    newSprite.xSpeed = 3;
-    newSprite.ySpeed = 3;
+    newSprite.xSpeed = Math.random() < 0.5 ? -3 : 3;
+    newSprite.ySpeed = Math.random() < 0.5 ? -3 : 3;
     sprites.push(newSprite);
     if(musicPause === false){
         music.play();
@@ -88,11 +87,11 @@ function popSound(){
         let cat = sprites[i];
         if (cat.x + cat.width > canvas.width || cat.x < 0) {
             cat.xSpeed = -cat.xSpeed; // Reverse direction
-            popSound();
+            // popSound();
         }
         if (cat.y + cat.height > canvas.height || cat.y < 0) {
             cat.ySpeed = -cat.ySpeed; // Reverse direction
-            popSound();
+            // popSound();
         }
         if(cat.x - cat.width > canvas.width){
             cat.x = canvas.width - cat.width;
@@ -120,13 +119,15 @@ toggleMusic.addEventListener("click", function(){
     if(musicPause === true){
         music.play();
         musicPause = false
+        toggleMusic.innerText = "Music: ON";
     } else {
         music.pause();
         musicPause = true
-    }
+        toggleMusic.innerText = "Music: OFF";
+        }
 })
 
-togglePopSound.addEventListener("click", popSoundToggle);
+// togglePopSound.addEventListener("click", popSoundToggle);
 button.onclick = addSprite;
 
 loadHandler();
