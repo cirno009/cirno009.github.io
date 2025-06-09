@@ -552,9 +552,3 @@ On larger screens, we allow verb-type and status-container to always take up scr
 		margin-top: 1rem;
 	}
 }
-
-@media (max-width: 600px) {
-    #back-to-home {
-        display: none;
-    }
-}
