@@ -162,6 +162,20 @@ span.rt {
 	min-height: 4rem;
 }
 
+#back-to-home {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    color: #ffffff;
+	background: rgb(63, 63, 63);
+    padding: 6px 12px;
+    border-radius: 6px;
+
+    transition: background 0.2s;
+}
+
 #status-box {
 	display: inline-flex;
 	background: green;
