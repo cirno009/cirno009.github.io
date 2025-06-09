@@ -1,14 +1,78 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Project Landing Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .project-list {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .project-list a {
+            display: block;
+            text-decoration: none;
+            color: #0077cc;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .project-list a:hover {
+            background-color: #f0f4f8;
+        }
+
+        .project-list a:before {
+            content: "🔗 ";
+        }
+    </style>
 </head>
 <body>
-<a href="Moving_Sprite/canvas.html" target="_blank">Moving Sprites</a>
-<br>
-<a href="Flashing_characters/kanjiflash.html" target="_blank">Flashing Characters</a>
-<br>
-<a href="korean-conjugation-master/index.html" target="_blank">Korean Conjugation App</a>
+    <h1>My Github Pages</h1>
+  <div class="project-list">
+    
+    <div class="project">
+      <a href="https://lincolnpeterson.org/" target="_blank">Blog</a>
+      <div class="description">My personal travel blog</div>
+    </div>
+
+    <div class="project">
+      <a href="Moving_Sprite/canvas.html" target="_blank">Moving Sprites</a>
+      <div class="description">Many sprites bounce around the canvas to fun music.</div>
+    </div>
+
+    <div class="project">
+      <a href="Flashing_characters/kanjiflash.html" target="_blank">Flashing Characters</a>
+      <div class="description">Chinese characters will flash on the screen in vibrant colors.</div>
+    </div>
+
+    <div class="project">
+      <a href="korean-conjugation-master/index.html" target="_blank">Korean Conjugation App</a>
+      <div class="description">Interactive app for practicing Korean verb conjugations by tense and politeness level.</div>
+    </div>
+
+  </div>
 </body>
-</html>
